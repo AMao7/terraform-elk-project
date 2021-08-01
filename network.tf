@@ -51,8 +51,8 @@ resource "aws_security_group" "ELK-sg" {
 		description			=	"HTTPS"
   }
   ingress {
-    from_port  			= 5000
-    to_port    			= 5000
+    from_port  			= 5044
+    to_port    			= 5044
     protocol   			= "tcp"
     cidr_blocks			= ["0.0.0.0/0"]
 		description			=	"Logstash TCP input"
@@ -77,6 +77,14 @@ resource "aws_security_group" "ELK-sg" {
     protocol   			= "tcp"
     cidr_blocks			= ["0.0.0.0/0"]
 		description			=	"Elasticsearch TCP"
+  }
+  
+  ingress {
+    from_port  			= 9600
+    to_port    			= 9600
+    protocol   			= "tcp"
+    cidr_blocks			= ["0.0.0.0/0"]
+		description			=	"Logstash TCP"
   }
   egress {
     from_port       = 0
