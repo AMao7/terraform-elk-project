@@ -63,7 +63,7 @@ note: hashed out the playbook to test the clone
 #### Things I could have done better + how would I improve this to scale 
 1. I could have used puppet + packer to create the ami + provision it with elk
 2. I could have used containerisation instead of aws to host this or perhaps set up kubernetes/docker in aws for further isolation
-3. I could have create a load balancer + autoscaling to group to reduce single point of failure and spread load better (Using one aws ec2 instance for everything is not advisable)
+3. I could have created a load balancer + autoscaling group to reduce single point of failure and spread load better (Using one aws ec2 instance for everything is not advisable)
 4. Could have set up graylog with elasticsearch (by adding graylog to ansible playbook and configure graylog to speak to elasticsearch)
 
 
