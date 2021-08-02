@@ -25,7 +25,7 @@
 1. Created an EC2 instance and downloaded ansible (this part could have been automated/done better by using packer to create the ami)
 ![image](https://user-images.githubusercontent.com/58399886/127879631-64557d10-d074-4df5-b79c-7260480870f6.png)
 
-2. Creating the EC2 instance with the ansible ami + appropriate security measures, this included setting up the VPC, the security groups and subnets etc, had a slight issue
+2. Creating the EC2 instance with the ansible ami + appropriate security measures, this included setting up the VPC, the security groups and subnets etc.
 ![image](https://user-images.githubusercontent.com/58399886/127875337-61d7fcb2-470b-463f-9a9b-a4983de8a95d.png)
 
 
