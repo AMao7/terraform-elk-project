@@ -29,7 +29,7 @@
 ![image](https://user-images.githubusercontent.com/58399886/127875337-61d7fcb2-470b-463f-9a9b-a4983de8a95d.png)
 
 
-3. I then created a user data template (user-data.tpl for ref) to clone the repository containing the ansible playbook for ELK + nginx, this will run as soon as the instance is created
+3. I then created a user data template (user_data.tpl for ref) to clone the repository containing the ansible playbook for ELK + nginx, this will run as soon as the instance is created
 ![image](https://user-images.githubusercontent.com/58399886/127875776-07270881-49d7-460a-8a38-f1628abfe260.png)
 
 note: hashed out the playbook to test the clone
