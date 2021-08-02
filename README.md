@@ -34,22 +34,22 @@
 
 note: hashed out the playbook to test the clone
 
-#### The steps I took to make provision the EC2 instance was:
+#### The steps I took to provision the EC2 instance was:
 ## Link to ansible-playbook: https://github.com/AMao7/playbook-ansible
 
-4. Once the EC2 span up, the ansible playbooks provisioned the instance with elk + nginx + config changes, I had to debug a number of issues with the configuration files so this step took a while, I had some issues with filebeat not sending logs to logstash and I had to manually do some steps in order update the playbook. I made the mistake of using the incorrect filebeat config structure. But this is goal number one complete!
+4. Once the EC2 span up, the ansible playbooks provisioned the instance with the ELK stack + nginx + config changes. I then had to debug a number of issues with the configuration files so this step took a while, I had some issues with filebeat not sending logs to logstash and I had to manually do some steps in order update the playbook. I made the mistake of using the incorrect filebeat config structure. But this is goal number one complete!
 
-5. I used nginx logs as the source of logs for this project and utilised the front page of blog page (no css +js included yet) as the static home page. the log files of nginx are kept in /var/logs/nginx and these logs are saved in access.log (for successful outputs) and error.log (for unsuccessful outputs). 
+5. I used nginx logs as the source of logs for this project and utilised the front page of my blog page (no css +js included yet) as the static home page. the log files of nginx are kept in /var/logs/nginx and these logs are saved in access.log (for successful outputs) and error.log (for unsuccessful outputs). 
 
-6. One of the requirements for this project was to have a reasonable amount of logs so one way I thought of doing this was to have a python script to hit the nginx endpoint constantly, but to make the logs more diverse, I added a loop for the incorrect page (localhost/errorr!!!!!!) so I can see them in error.logs and hopefully see them in kibana too! I had another issue here where the script was sending too many logs so I had to lower it to not cause space issues
+6. One of the requirements for this project was to have a reasonable amount of logs so one way I thought of doing this was to have a python script to hit the nginx endpoint constantly, but to make the logs more diverse, I added a loop for the incorrect page (localhost/errorr!!!!!!) so I can see them in error.logs and hopefully see them in kibana too! I had another issue here where the script was sending too many logs so I had to lower it to not cause space issues.
 
 7. I used the command nohup python3 ping_enpoint.py & to run in background and log any issues in nohup.out
 
-8. Filebeat will monitor this directory for all its logs and will output this to logstash
+8. Filebeat will monitor the /var/log/nginx directory for all the nginx logs and will output this to logstash
 
 ![image](https://user-images.githubusercontent.com/58399886/127877245-2db35ca8-2750-43e5-a3bb-f23cb0052f31.png)
 
-9. Logstash will then take these logs (parse them!) and then send it to elasticsearch where it can be ready for viewing
+9. Logstash will then take these logs (parse them!) and then send it to elasticsearch where it can be ready for viewing in kibana
 
 10. A secondary goal of this project was to add a filter to the logstash part of the stack , for this I used grok which is a great parser of unstructured data, it works by matching keywords to each other. Using grok took some time to do until i found something called a grok debugger in kibana
 ![image](https://user-images.githubusercontent.com/58399886/127878209-41b8da0a-a468-41c5-91ca-7842e73ba8ad.png)
