@@ -9,9 +9,7 @@ resource "aws_route_table" "ELK-public-rt" {
     vpc_id = "${aws_vpc.ELK-vpc.id}"
     
     route {
-        //associated subnet can reach everywhere
         cidr_block = "0.0.0.0/0" 
-        //CRT uses this IGW to reach internet
         gateway_id = "${aws_internet_gateway.ELK-igw.id}" 
     }
     
@@ -28,20 +26,20 @@ resource "aws_route_table_association" "ELK-rta-public-subnet"{
 
 resource "aws_security_group" "ELK-sg" {
   vpc_id = "${aws_vpc.ELK-vpc.id}"
-	description				= "Allow SSH, HTTP, HTTPS and ELK stack specific ports"
+  description				= "Allow SSH, HTTP, HTTPS and ELK ports"
   ingress {
     from_port   		= 22
     to_port     		= 22
     protocol    		= "tcp"
     cidr_blocks 		= ["0.0.0.0/0"]
-		description			="SSH"
+    description			= "SSH"
   }
   ingress {
     from_port   		= 80
     to_port     		= 80
     protocol    		= "tcp"
     cidr_blocks 		= ["0.0.0.0/0"]
-		description			= "HTTP"
+    description			= "HTTP"
   }
 
   ingress {
@@ -49,28 +47,28 @@ resource "aws_security_group" "ELK-sg" {
     to_port    			= 5044
     protocol   			= "tcp"
     cidr_blocks			= ["0.0.0.0/0"]
-		description			=	"Logstash"
+    description	                = "Logstash"
   }
   ingress {
     from_port  			= 5601
     to_port    			= 5601
     protocol   			= "tcp"
     cidr_blocks			= ["0.0.0.0/0"]
-		description			=	"Kibana"
+    description			= "Kibana"
   }
   ingress {
     from_port  			= 9200
     to_port    			= 9200
     protocol   			= "tcp"
     cidr_blocks			= ["0.0.0.0/0"]
-		description			=	"Elasticsearch HTTP"
+    description			= "Elasticsearch"
   }
   ingress {
     from_port  			= 9300
     to_port    			= 9300
     protocol   			= "tcp"
     cidr_blocks			= ["0.0.0.0/0"]
-		description			=	"Elasticsearch"
+    description			= "Elasticsearch"
   }
   
   ingress {
@@ -78,13 +76,13 @@ resource "aws_security_group" "ELK-sg" {
     to_port    			= 9600
     protocol   			= "tcp"
     cidr_blocks			= ["0.0.0.0/0"]
-		description			=	"Logstash"
+    description			= "Logstash"
   }
   egress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
-		description   	= "Outbound"
+    description     = "Outbound"
   }
 }
