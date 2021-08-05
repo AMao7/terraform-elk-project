@@ -73,7 +73,7 @@ note: hashed out the playbook to test the clone
 2. I could have used containerisation instead of aws to host this or perhaps set up kubernetes/docker in aws for further isolation
 3. I could have created a load balancer + autoscaling group to reduce single point of failure and spread load better (Using one aws ec2 instance for everything is not advisable)
 4. Could have set up graylog with elasticsearch (by adding graylog to ansible playbook and configure graylog to speak to elasticsearch)
-
+5. Remove single point of failure, currently I have ELK + nginx running on one ec2 instance, instead I could run them seperately and even in different availability zones.
 
 #### Benefits of the ELK stack
 1. Aggregations of logs from different streams of data resources in one central search tool is very convenient for users with complex logging systems
