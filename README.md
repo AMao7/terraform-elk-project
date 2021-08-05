@@ -10,7 +10,7 @@
 * Use graylog instead of kibana (TODO)
 
 
-#### This terraform code contains:
+#### The terraform code contains:
 * VPC
 * IG
 * Route table
@@ -19,13 +19,21 @@
 * AMI image 
 * User data file (which spins up the EC2 instance with the ansible-playbook repo)
 
+#### The ansible code contains (https://github.com/AMao7/playbook-ansible):
+* Java (ELK is dependent on this)
+* Elasticsearch
+* Logstash
+* Kibana
+* Filebeat with grok (used to send parsed logs to logstash)
+* Nginx (contains the static site)
+* a python script that will ping the nginx enpoint for logs
 
 
 #### The steps I took to make this infrastructure was:
 1. Created an EC2 instance and downloaded ansible (this part could have been automated/done better by using packer to create the ami)
 ![image](https://user-images.githubusercontent.com/58399886/127879631-64557d10-d074-4df5-b79c-7260480870f6.png)
 
-2. Creating the EC2 instance with the ansible ami + appropriate security measures, this included setting up the VPC, the security groups and subnets etc.
+2. Creating the EC2 instance with the ansible ami + terraform which included the appropriate security measures, this included setting up the VPC, the security groups and subnets etc.
 ![image](https://user-images.githubusercontent.com/58399886/127875337-61d7fcb2-470b-463f-9a9b-a4983de8a95d.png)
 
 
@@ -67,5 +75,11 @@ note: hashed out the playbook to test the clone
 4. Could have set up graylog with elasticsearch (by adding graylog to ansible playbook and configure graylog to speak to elasticsearch)
 
 
+#### Benefits of the ELK stack
+1. Aggregations of logs from different streams of data resources in one central search tool is very convenient for users with complex logging systems
+2. Processing – turning logs into meaningful data ready to be visualised
+3. Storage/time capabilties – the ability to store data for extended time periods to allow for monitoring and looking at trends
+4. Analysis – Being able to ask questions about the data and creating visualisations and dashboards
+5. Open source, so new features are regularly added and barrier to use is low
 
 
