@@ -1,7 +1,5 @@
 resource "aws_vpc" "ELK-vpc" {
     cidr_block = "10.0.0.0/16" # 254 IP addresses in this subnet
-    enable_dns_support = "true" #internal domain name
-    enable_dns_hostnames = "true" #internal host name
     
     tags = {
         Name="ELK-vpc"
