@@ -30,7 +30,7 @@
 
 
 #### The steps I took to make this infrastructure was:
-1. Created an EC2 instance and downloaded ansible (this part could have been automated/done better by using packer to create the ami)
+1. Creating an EC2 instance and downloaded ansible (this part could have been automated/done better by using packer to create the ami)
 ![image](https://user-images.githubusercontent.com/58399886/127879631-64557d10-d074-4df5-b79c-7260480870f6.png)
 
 2. Creating the EC2 instance with the ansible ami + terraform which included the appropriate security measures, this included setting up the VPC, the security groups and subnets etc.
