@@ -47,7 +47,7 @@ note: hashed out the playbook to test the clone
 
 4. Once the EC2 span up, the ansible playbooks provisioned the instance with the ELK stack + nginx + config changes. I then had to debug a number of issues with the configuration files so this step took a while, I had some issues with filebeat not sending logs to logstash and I had to manually do some steps in order update the playbook. I made the mistake of using the incorrect filebeat config structure. But this is goal number one complete!
 
-5. I used nginx logs as the source of logs for this project and utilised the front page of my blog page (no css +js included yet) as the static home page. the log files of nginx are kept in /var/logs/nginx and these logs are saved in access.log (for successful outputs) and error.log (for unsuccessful outputs). 
+5. I used nginx logs as the source of logs for this project and utilised a basic html page as the static home page. the log files of nginx are kept in /var/logs/nginx and these logs are saved in access.log (for successful outputs) and error.log (for unsuccessful outputs). 
 
 6. One of the requirements for this project was to have a reasonable amount of logs so one way I thought of doing this was to have a python script to hit the nginx endpoint constantly, but to make the logs more diverse, I added a loop for the incorrect page (localhost/errorr!!!!!!) so I can see them in error.logs and hopefully see them in kibana too! I had another issue here where the script was sending too many logs so I had to lower it to not cause space issues.
 
